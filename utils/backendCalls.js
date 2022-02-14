@@ -43,15 +43,18 @@ export const validateOtp = async (num, otp) => {
 };
 
 let abortController;
-export const getSongData = async (id) => {
+export const getSongData = async (userId, videoId) => {
+  console.log(userId, videoId);
   if (typeof abortController != typeof undefined) {
     abortController.abort();
   }
   abortController = new AbortController();
 
-  let SongData = await axios.get(
-    `${requestUrls.api.REQUEST_SONG_META}?id=${id}`,
-    { signal: abortController.signal }
-  );
+  let SongData = await axios({
+    url: requestUrls.api.SERVER_SONGMETA,
+    method: "POST",
+    data: { userId, videoId },
+    signal: abortController.signal,
+  });
   return SongData;
 };

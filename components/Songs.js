@@ -36,6 +36,8 @@ function Songs({ data }) {
   const [alterData, setAlterData] = useRecoilState(ReceivedData);
   const user = useRecoilValue(UserState);
   const valOfShuffle = useRecoilValue(shuffleState);
+  // const user = useRecoilValue(UserState);
+
   const playPause = () => {
     setPlay(!play);
   };
@@ -59,7 +61,7 @@ function Songs({ data }) {
   useEffect(async () => {
     if (activeId == id) {
       console.log(active);
-      let songData = await getSongData(id);
+      let songData = await getSongData(user, id);
       setContent(songData?.data);
       setPlay(true);
     } else {
