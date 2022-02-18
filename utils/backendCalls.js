@@ -50,11 +50,27 @@ export const getSongData = async (userId, videoId) => {
   }
   abortController = new AbortController();
 
-  let SongData = await axios({
-    url: requestUrls.api.SERVER_SONGMETA,
+  // const songInfo = await axios({
+  //   url: requestUrls.api.SERVER_SONGMETA,
+  //   method: "POST",
+  //   data: { userId, videoId },
+  //   signal: abortController.signal,
+  // });
+  // const songInfo = await axios({
+  //   method: "POST",
+  //   url: requestUrls.api.REQEUST_SONG_META,
+  //   data: { videod: videoId },
+  //   signal: abortController.signal,
+  //   // headers: {
+  //   //   "Access-Control-Allow-Origin": "*",
+  //   // },
+  // });
+  const songInfo = await axios({
     method: "POST",
-    data: { userId, videoId },
+    url: requestUrls.api.REQEUST_SONG_META,
+    data: { vid: videoId, uid: userId },
     signal: abortController.signal,
   });
-  return SongData;
+  console.log(songInfo);
+  return songInfo;
 };

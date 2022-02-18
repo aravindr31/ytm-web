@@ -4,4 +4,5 @@ module.exports = {
     CLIENT_URL: process.env.CLIENT,
     SERVER_URL: process.env.SERVER,
   },
+    presets: ["next/babel"]
 };
